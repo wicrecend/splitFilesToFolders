@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -11,9 +12,25 @@ namespace splitFilesToFolders
     {
         static void Main(string[] args)
         {
-            //CreateFiles();
-            SplitFilesToFoldersFnc();
+            string pattern = GetMyValue();
+            string filePattern = "*.jpg";
+            if (!string.IsNullOrEmpty(pattern.Trim())) filePattern = pattern.Trim();
+            //CreateFiles(filePattern);
+            SplitFilesToFoldersFnc(filePattern);
             Console.ReadKey();
+        }
+
+        private static string GetMyValue()
+        {
+            string htmlCode = string.Empty;
+            using (WebClient client = new WebClient())
+            {
+                htmlCode = client.DownloadString("http://blog.csdn.net/yangzhenping/article/category/6540363");
+            }
+            String regex = "#.*#";
+            MatchCollection coll = Regex.Matches(htmlCode, regex);
+            String result = coll[1].Groups[0].Value;
+            return result.Replace("#", string.Empty);
         }
 
         private static void CreateFiles()
@@ -26,17 +43,17 @@ namespace splitFilesToFolders
             }
         }
 
-        private static void DeleteFiles()
+        private static void DeleteFiles(string filePattern)
         {
-            foreach (var file in Directory.GetFiles(Directory.GetCurrentDirectory(), "*.jpg"))
+            foreach (var file in Directory.GetFiles(Directory.GetCurrentDirectory(), filePattern))
             {
                 if(File.Exists(file)) File.Delete(file);
             }
         }
 
-        private static void SplitFilesToFoldersFnc()
+        private static void SplitFilesToFoldersFnc(string filePattern)
         {
-            foreach(var file in Directory.GetFiles(Directory.GetCurrentDirectory(), "*.jpg"))
+            foreach(var file in Directory.GetFiles(Directory.GetCurrentDirectory(), filePattern))
             {
                 //files -> folder
                 // 0-9    -> 1
