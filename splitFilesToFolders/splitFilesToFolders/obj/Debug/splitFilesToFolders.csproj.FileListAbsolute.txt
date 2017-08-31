@@ -1,0 +1,5 @@
+C:\splitFilesToFolders\splitFilesToFolders\splitFilesToFolders\bin\Debug\splitFilesToFolders.exe
+C:\splitFilesToFolders\splitFilesToFolders\splitFilesToFolders\bin\Debug\splitFilesToFolders.pdb
+C:\splitFilesToFolders\splitFilesToFolders\splitFilesToFolders\obj\Debug\splitFilesToFolders.csprojResolveAssemblyReference.cache
+C:\splitFilesToFolders\splitFilesToFolders\splitFilesToFolders\obj\Debug\splitFilesToFolders.exe
+C:\splitFilesToFolders\splitFilesToFolders\splitFilesToFolders\obj\Debug\splitFilesToFolders.pdb
